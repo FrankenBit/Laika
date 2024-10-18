@@ -6,9 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{879A2F03-6290-4126-BF5F-EE13846C2049}"
 	ProjectSection(SolutionItems) = preProject
 		GitInfo.txt = GitInfo.txt
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrankenBit.LaikaTest", "FrankenBit.LaikaTest\FrankenBit.LaikaTest.csproj", "{EBBC1F0A-B445-43FF-8515-F7C860DA34FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrankenBit.LaikaTest", "FrankenBit.LaikaTest\FrankenBit.LaikaTest.csproj", "{EBBC1F0A-B445-43FF-8515-F7C860DA34FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrankenBit.Laika", "FrankenBit.Laika\FrankenBit.Laika.csproj", "{85CC8C05-9A1C-4253-AA9F-591FC3281E88}"
 EndProject

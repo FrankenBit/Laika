@@ -7,23 +7,22 @@
     <Nullable>enable</Nullable>
 
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>mutty</ToolCommandName>
+    <ToolCommandName>laika</ToolCommandName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\..\..\artifacts</PackageOutputPath>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/FrankenBit/Mutty</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/FrankenBit/Laika</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 
-    <PackageId>FrankenBit.Mutty</PackageId>
+    <PackageId>FrankenBit.Laika</PackageId>
     <Authors>FrankenBit</Authors>
 
-    <AssemblyVersion>$(GitSemVerMajor).$(GitSemVerMinor).$(GitSemVerPatch).$(GitBranch)+$(GitCommit)</AssemblyVersion>
-    <FileVersion>$(AssemblyVersion)</FileVersion>
-    <InformationalVersion>$(AssemblyVersion)</InformationalVersion>
+    <GitVersion>false</GitVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="$(SolutionDir)\LICENSE" Pack="true" PackagePath="\" />
+    <None Include="$(SolutionDir)\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +30,23 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.1" />
   </ItemGroup>
+
+  <Target Name="PopulateInfo" DependsOnTargets="GitVersion" BeforeTargets="GetAssemblyVersion;GenerateNuspec;GetPackageContents">
+    <PropertyGroup>
+      <BaseVersion>$(GitSemVerMajor).$(GitSemVerMinor).$(GitSemVerPatch).$(GitCommits)</BaseVersion>
+      <ExtendedVersion>$(GitSemVerMajor).$(GitSemVerMinor).$(GitSemVerPatch).$(GitCommits)</ExtendedVersion>
+      <ExtendedVersion Condition="'$(GitBranch)' != 'main'">$(GitSemVerMajor).$(GitSemVerMinor).$(GitSemVerPatch)$(GitSemVerDashLabel)+$(GitBranch).$(GitCommits)</ExtendedVersion>
+      <PackageVersion>$(ExtendedVersion)</PackageVersion>
+      <RepositoryBranch>$(GitBranch)</RepositoryBranch>
+      <RepositoryCommit>$(GitCommit)</RepositoryCommit>
+      <SourceRevisionId>$(GitBranch) $(GitCommit)</SourceRevisionId>
+
+      <AssemblyVersion>$(BaseVersion)</AssemblyVersion>
+      <FileVersion>$(BaseVersion)</FileVersion>
+      <InformationalVersion>$(ExtendedVersion)</InformationalVersion>
+    </PropertyGroup>
+  </Target>
 
 </Project>

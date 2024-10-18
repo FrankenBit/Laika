@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "FrankenBit.Laika": {
+      "commandName": "Project",
+      "commandLineArgs": "--help",
+      "workingDirectory": "$(SolutionDir)"
+    }
+  }
+}
