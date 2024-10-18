@@ -1,6 +1,6 @@
-# Laika for STRYKER.NET
+# Laika for Stryker.NET
 
-A small tool that runs Stryker.NET in the background when a source file changes.
+A small tool that runs [Stryker.NET](https://github.com/stryker-mutator/stryker-net) in the background when a source file changes.
 
 ## Installation
 
@@ -14,7 +14,7 @@ A small tool that runs Stryker.NET in the background when a source file changes.
 
 ## Prerequisites
 
-- Stryker.NET must be installed globally or locally in the project.
+- Stryker.NET must be installed [globally](https://stryker-mutator.io/docs/stryker-net/getting-started/#install-globally) or [locally in the project](https://stryker-mutator.io/docs/stryker-net/getting-started/#install-in-project).
 
 ## Usage
 
