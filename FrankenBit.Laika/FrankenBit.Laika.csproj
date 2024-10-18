@@ -9,7 +9,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>laika</ToolCommandName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\..\..\artifacts</PackageOutputPath>
+    <PackageOutputPath>$(SolutionDir)artifacts</PackageOutputPath>
     <PackageProjectUrl>https://github.com/FrankenBit/Laika</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -17,7 +17,7 @@
     <PackageId>FrankenBit.Laika</PackageId>
     <Authors>FrankenBit</Authors>
 
-    <GitVersion>false</GitVersion>
+    <GitInfoReportImportance Condition="'$(Configuration)' == 'Release'">high</GitInfoReportImportance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,21 +32,5 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.1" />
   </ItemGroup>
-
-  <Target Name="PopulateInfo" DependsOnTargets="GitVersion" BeforeTargets="GetAssemblyVersion;GenerateNuspec;GetPackageContents">
-    <PropertyGroup>
-      <BaseVersion>$(GitSemVerMajor).$(GitSemVerMinor).$(GitSemVerPatch).$(GitCommits)</BaseVersion>
-      <ExtendedVersion>$(GitSemVerMajor).$(GitSemVerMinor).$(GitSemVerPatch).$(GitCommits)</ExtendedVersion>
-      <ExtendedVersion Condition="'$(GitBranch)' != 'main'">$(GitSemVerMajor).$(GitSemVerMinor).$(GitSemVerPatch)$(GitSemVerDashLabel)+$(GitBranch).$(GitCommits)</ExtendedVersion>
-      <PackageVersion>$(ExtendedVersion)</PackageVersion>
-      <RepositoryBranch>$(GitBranch)</RepositoryBranch>
-      <RepositoryCommit>$(GitCommit)</RepositoryCommit>
-      <SourceRevisionId>$(GitBranch) $(GitCommit)</SourceRevisionId>
-
-      <AssemblyVersion>$(BaseVersion)</AssemblyVersion>
-      <FileVersion>$(BaseVersion)</FileVersion>
-      <InformationalVersion>$(ExtendedVersion)</InformationalVersion>
-    </PropertyGroup>
-  </Target>
 
 </Project>
