@@ -1,6 +1,6 @@
 # Laika for Stryker.NET
 
-![Laika Logo](Artwork/laika.png)
+![Laika Logo](Artwork/Logo.png)
 
 A small tool that runs [Stryker.NET](https://github.com/stryker-mutator/stryker-net) in the background when a source file changes.
 
